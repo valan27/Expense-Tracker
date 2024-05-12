@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content%}
+<style>
+    .button{
+        margin-left: 40%;
+        width: 45%;
+
+    }
+    .container{
+        margin-top: 5%;
+    }
+    
+</style>
+
+<div class="col-md-6 offset-md-3">
+
+    {%if user.is_authenticated %}
+
+    <h1>Welcome to Expense Tracker</h1>
+    {%else%}
+    <br/>
+    <br/>
+    <div class="container">
+<h1 style="margin-left: 36%;" >Login</h1>
+<br/>
+<form method="POST" action="{%url 'home' %}">
+    {% csrf_token %}
+
+        <div class="mb-3">
+            <label style="margin-bottom: 2%;" for="username">Username:</label>
+            
+          <input type="test" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+         
+        </div>
+        <br/>
+        <div class="mb-3">
+            <label style="margin-bottom: 2%;" for="password">Password:</label>
+            
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+        </div>
+       <br/>
+       <div class="button">
+        <button style="width: 45%;" type="submit" class="btn btn-secondary">Login</button>
+        </div>
+      </form>
+</form>
+    </div>
+</div>
+
+
+{%endif%}
+{% endblock %}

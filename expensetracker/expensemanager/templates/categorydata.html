@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content%}
+
+
+<head>
+    <style>
+        table {
+            width: 80%; /* Adjust the width as needed */
+            margin: auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #38ff7b;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #c5c5c5;
+            font-weight: bold;
+        }
+        td {
+            background-color: #b6f0be;
+            
+        }
+        /* Alternating row colors */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        /* Hover effect */
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .container{
+            margin-top: 5%;
+        }
+    </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h3 style="margin-left:30% ;">Category-wise Expense Chart</h3>
+    <!-- Canvas element to render the chart -->
+    <canvas id="pie-chart" width="400" height="400"></canvas>
+
+    <script>
+        // Fetch data from Django views
+        var categories = {{ categories|safe }};
+        var amounts = {{ amounts|safe }};
+
+        // Get context of the canvas element
+        var ctx = document.getElementById('pie-chart').getContext('2d');
+
+        // Create pie chart
+        var pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: {{ categories|safe }},
+                datasets: [{
+                    label: 'Category-wise Expenses',
+                    data: {{ amounts|safe }},
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)', // Red
+                        'rgba(54, 162, 235, 0.5)', // Blue
+                        'rgba(255, 206, 86, 0.5)', // Yellow
+                        'rgba(72, 201, 176, 0.5)',
+                        'rgba(128, 139, 150, 0.5)',
+                        'rgba(165, 105, 189, 0.5)',
+                        'rgba(220, 118, 51, 0.5)',
+                        // Add more colors if needed
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(72, 201, 176, 1)',
+                        'rgba(128, 139, 150, 1)',
+                        'rgba(165, 105, 189, 1)',
+                        'rgba(220, 118, 51, 1)',
+
+
+                        // Add more colors if needed
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false, // Disable responsiveness for fixed canvas size
+            }
+        });
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Expenses</th>
+        </tr>
+        {% for catdet in categorytotals%}
+        <tr>
+            <td>{{ catdet.expcat }}</td>
+            <td>{{ catdet.total_amount }}</td>
+    
+        </tr>
+        {% endfor %}
+       
+        
+    </table>
+    <br>
+    <br>
+</body>
+
+{% endblock %}

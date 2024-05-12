@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content%}
+
+
+
+
+    <style>
+        /* Table styling */
+        table {
+            width: 80%; /* Adjust the width as needed */
+            margin: auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #accbf5;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #cccccc;
+            font-weight: bold;
+        }
+        td {
+            background-color: #81bcff;
+            
+        }
+        /* Alternating row colors */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        /* Hover effect */
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .container{
+            margin-top: 5%;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h3 style="margin: 5%;">Total Expenditure</h3>
+
+<table>
+    
+  <tr>
+    <th>Expenditure ID</th>
+    <th>Username</th>
+    <th>Category</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th>Amount</th>
+  </tr>
+
+{% for expd in expdetail%}
+<tr>
+    <td>{{expd.idreport}}</td>
+    <td>{{expd.expuname}}</td>
+    <td>{{expd.expcat}}</td>
+    <td>{{expd.expdes}}</td>
+    <td>{{expd.expdate}}</td>
+    <td>{{expd.expamt}}</td>
+</tr>
+{% endfor %}
+<tr>
+    <td></td>
+    <td></td>
+    <td>Total</td>
+    <td></td>
+    <td></td>
+    <td>{{total}}</td>
+</tr>
+
+
+  
+  <!-- Add more rows as needed -->
+</table>
+{% endblock %}
+</div>
+
+</body>

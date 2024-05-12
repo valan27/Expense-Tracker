@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content%}
+
+
+
+<style>
+    .button-container {
+        text-align: center; /* Center the buttons horizontally */
+    }
+    .button1 {
+        display: inline-block; /* Display buttons inline */
+        background-color: #007bff; /* Blue color */
+        color: #ffffff; /* White text color */
+        text-decoration: none; /* Remove underline */
+        padding: 10px 20px; /* Padding for better appearance */
+        border-radius: 5px; /* Rounded corners */
+        border: none; /* Remove border */
+        cursor: pointer; /* Cursor style */
+        margin: 0 10px; /* Add margin between buttons */
+    }
+    .button1:hover {
+        background-color: #0056b3; /* Darker blue color on hover */
+    }
+    .button2 {
+        display: inline-block; /* Display buttons inline */
+        background-color: #eb640b; /* Blue color */
+        color: #ffffff; /* White text color */
+        text-decoration: none; /* Remove underline */
+        padding: 10px 20px; /* Padding for better appearance */
+        border-radius: 5px; /* Rounded corners */
+        border: none; /* Remove border */
+        cursor: pointer; /* Cursor style */
+        margin: 0 10px; /* Add margin between buttons */
+    }
+    .button2:hover {
+        background-color: #eb640b; /* Darker blue color on hover */
+    }
+    .button3 {
+        display: inline-block; /* Display buttons inline */
+        background-color: #0dad4a; /* Blue color */
+        color: #ffffff; /* White text color */
+        text-decoration: none; /* Remove underline */
+        padding: 10px 20px; /* Padding for better appearance */
+        border-radius: 5px; /* Rounded corners */
+        border: none; /* Remove border */
+        cursor: pointer; /* Cursor style */
+        margin: 0 10px; /* Add margin between buttons */
+    }
+    .button3:hover {
+        background-color: #0dad4a; /* Darker blue color on hover */
+    }
+</style>
+</head>
+<body>
+    <h3 style="margin: 10%;">Generate your report here</h3>
+
+<div class="button-container">
+<a href="{% url 'totaldata' %}" class="button1">Total Expenditure</a>
+<a href="{% url 'daterange' %}" class="button2">Expenditure by Date range</a>
+<a href="{% url 'categorydata' %}" class="button3">Expenditure by Category</a>
+</div>
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<style>
+    .button{
+        margin-left: 38%;
+        margin-top: 0.5%;
+        
+    
+
+    }
+    .container{
+        margin-top: 2%;
+        
+    
+    }
+    
+    .formgrp label {
+        display: block;
+        margin-bottom: 2%;
+        font-weight: 400;
+        margin-left: 20%;
+    }
+    .formgrp input,
+    .formgrp select,
+    .formgrp textarea {
+        width: 50%;
+        padding: 0.5%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-left: 20%;
+        margin-bottom: 1%;
+
+        
+    }
+   
+</style>
+ <div class="container">
+    <h3 style="margin-left: 30%;" >Add your expenditure</h3>
+
+    <br/>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="formgrp">
+            <label style="margin-bottom: 1%;" for="username">Id:</label>
+            <input type="text" value="{{requestid}}" class="form-control" id="repid" name="repid" required>
+            </div>
+    
+            <div class="formgrp">
+                <label style="margin-bottom: 1%;" for="username">Username:</label>
+                
+              <input type="text" class="form-control" value="{{username}}" id="username" name="username" readonly>
+             
+            </div>
+            <div class="formgrp">
+                <label style="margin-bottom: 1%;" for="category">Category:</label>
+                
+                <select name="category" id="category" aria-placeholder="Select category" required>
+                    <option value="Select">Select Category</option>
+                    <option value="Groceries">Groceries</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Fuel">Fuel</option>
+                    <option value="Medical expenses">Medical expenses</option>
+                    <option value="Food">Food</option>
+
+                  </select>
+             
+            </div>
+            <div class="formgrp">
+                <label style="margin-bottom: 1%;" for="username">Description:</label>
+                
+              <input type="text" class="form-control" id="desc" name="desc" placeholder="Enter Description" required>
+             
+            </div>
+      
+            <div class="formgrp">
+                <label style="margin-bottom: 1%;" for="date">Date:</label>
+                
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="formgrp">
+                <label style="margin-bottom: 1%;" for="amount"> Enter Amount:</label>
+                
+                <input type="number" id="amount" name="amount" class="form-control" placeholder="Enter Amount" required>
+            </div>
+           <br/>
+           <div class="button">
+            <button style="width: 20%;" type="submit" class="btn btn-secondary">Submit</button>
+            </div>
+          </form>
+    </form>
+        </div>
+    
+{% endblock %}

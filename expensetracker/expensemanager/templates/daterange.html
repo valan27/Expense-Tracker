@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<style>
+    .container{
+        margin-left: 10%;
+    }
+    
+    .formgrp label {
+        display: block;
+        margin-bottom: 2%;
+        font-weight: 400;
+        margin-left: 20%;
+    }
+    .formgrp input,
+    .formgrp select,
+    .formgrp textarea,
+    .formgrp date{
+        width: 30%;
+        padding: 0.5%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-left: 20%;
+        margin-bottom: 1%;
+
+        
+    }
+    .button{
+        margin-left: 32%;
+        margin-top: 0.5%;
+        
+    
+
+    }
+    table {
+        width: 80%; /* Adjust the width as needed */
+        margin: auto;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        margin-left: 10%;
+    }
+    th, td {
+        border: 1px solid #ffbdbd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #c5c5c5;
+        font-weight: bold;
+    }
+    td {
+        background-color: #ffdede;
+        
+    }
+    /* Alternating row colors */
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    /* Hover effect */
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    .container{
+        margin-top: 5%;
+    }
+    
+</style>
+
+<div class="container">
+    <br>
+    
+    <h3 style="margin-left: 20%;">Date range based expenses</h3>
+    <br>
+    
+
+    <form method="POST">
+        {% csrf_token %}
+    
+            <div class="formgrp">
+                <label style="margin-bottom: 2%;" for="fdate">From date:</label>
+                <input type="date" id="date" name="fdate" required>
+              
+             
+            </div>
+            <br/>
+            <div class="formgrp">
+                <label style="margin-bottom: 2%;" for="tdate">To date:</label>
+                <input type="date" id="date" name="tdate" required>
+              
+            </div>
+           <br/>
+           <div class="button">
+            <button type="submit" class="btn btn-secondary">Get</button>
+            
+            </div>
+          </form>
+          <br>
+          <br>
+          <br>
+
+        </div>
+        {% if expenses %}
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Expenditure ID</th>
+                    <th>Username</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses %}
+                    <tr>
+                        <td>{{ expense.idreport }}</td>
+                        <td>{{ expense.expuname }}</td>
+                        <td>{{ expense.expcat }}</td>
+                        <td>{{ expense.expdate }}</td>
+                        <td>{{ expense.expamt }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    </div>
+
+{% endblock %}
